@@ -3,9 +3,9 @@ import { useRef } from "react";
 import { MapPin, Clock, Phone } from "lucide-react";
 
 const locations = [
-  { name: "MMMUT", timing: "11 AM – 11 PM", phone: "+91 7007103090" },
+  { name: "MMMUT", timing: "11 AM – 11 PM", phone: "+91 9260926571" },
   { name: "Nauka vihar", timing: "10 AM – 12 AM", phone: "+91 8707879374" },
-  { name: "Gorakhpur", timing: "12 PM – 12 AM", phone: "+91 9260926571" },
+  { name: "Gorakhpur", timing: "12 PM – 12 AM", phone: "+91 9335620810" },
 ];
 
 const LocationInfo = () => {
