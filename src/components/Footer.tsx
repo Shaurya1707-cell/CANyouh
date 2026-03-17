@@ -15,7 +15,7 @@ const Footer = () => (
         <div>
           <h4 className="font-display font-bold text-sm uppercase tracking-wider mb-4 text-secondary-foreground/80">Quick Links</h4>
           <div className="flex flex-col gap-2">
-            {["Flavors", "Why CANyouh", "Find Us"].map((l) => (
+            {["Flavors", "About Us", "Why CANyouh", "Find Us"].map((l) => (
               <button
                 key={l}
                 onClick={() => document.getElementById(l.toLowerCase().replace(/ /g, "-"))?.scrollIntoView({ behavior: "smooth" })}

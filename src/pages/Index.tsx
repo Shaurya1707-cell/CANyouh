@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FlavorsShowcase from "@/components/FlavorsShowcase";
+import AboutUs from "@/components/AboutUs";
 import WhyCANyouh from "@/components/WhyCANyouh";
 import Experience from "@/components/Experience";
 import LocationInfo from "@/components/LocationInfo";
@@ -25,6 +26,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       <FlavorsShowcase />
+      <AboutUs />
       <WhyCANyouh />
       <Experience />
       <LocationInfo />

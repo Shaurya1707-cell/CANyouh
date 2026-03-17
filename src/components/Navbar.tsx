@@ -14,7 +14,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = ["Flavors", "Why CANyouh", "Experience", "Find Us"];
+  const links = ["Flavors", "About Us", "Why CANyouh", "Experience", "Find Us"];
 
   const scrollTo = (id: string) => {
     if (location.pathname === "/") {
