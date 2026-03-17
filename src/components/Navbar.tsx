@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -14,7 +17,11 @@ const Navbar = () => {
   const links = ["Flavors", "Why CANyouh", "Experience", "Find Us"];
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname === "/") {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate(`/#${id}`);
+    }
     setMenuOpen(false);
   };
 
@@ -30,7 +37,16 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="font-display font-extrabold text-xl tracking-tight">
+        <button
+          onClick={() => {
+            if (location.pathname === "/") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              navigate("/");
+            }
+          }}
+          className="font-display font-extrabold text-xl tracking-tight"
+        >
           <span className="text-gradient">CAN</span>
           <span className="text-foreground">youh</span>
         </button>
@@ -47,7 +63,10 @@ const Navbar = () => {
             </button>
           ))}
           <button
-            onClick={() => scrollTo("flavors")}
+            onClick={() => {
+              navigate("/order");
+              setMenuOpen(false);
+            }}
             className="glow-button text-sm py-2 px-6"
           >
             Order Now
@@ -84,7 +103,13 @@ const Navbar = () => {
                   {link}
                 </button>
               ))}
-              <button onClick={() => scrollTo("flavors")} className="glow-button text-sm py-3">
+              <button
+                onClick={() => {
+                  navigate("/order");
+                  setMenuOpen(false);
+                }}
+                className="glow-button text-sm py-3"
+              >
                 Order Now
               </button>
             </div>

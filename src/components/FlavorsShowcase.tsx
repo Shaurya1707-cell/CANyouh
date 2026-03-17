@@ -1,53 +1,29 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import flavorOreo from "@/assets/flavor-oreo.jpg";
-import flavorBiscoff from "@/assets/flavor-biscoff.jpg";
-import flavorStrawberry from "@/assets/flavor-strawberry.jpg";
-import flavorMango from "@/assets/flavor-mango.jpg";
+import { useNavigate } from "react-router-dom";
+import { FLAVORS } from "@/lib/flavors";
 
-const flavors = [
-  {
-    name: "Oreo Chocolate",
-    desc: "Dark cocoa layers with crushed Oreo, smothered in Belgian chocolate ganache.",
-    price: "₹129",
-    image: flavorOreo,
-    color: "from-[hsl(15,50%,16%)]",
-  },
-  {
-    name: "Lotus Biscoff",
-    desc: "Caramelised biscuit crumble layered with silky Biscoff cream.",
-    price: "₹139",
-    image: flavorBiscoff,
-    color: "from-[hsl(25,60%,30%)]",
-  },
-  {
-    name: "Strawberry Cheesecake",
-    desc: "Tangy strawberry compote meets velvety cream cheese on a biscuit base.",
-    price: "₹139",
-    image: flavorStrawberry,
-    color: "from-[hsl(350,60%,40%)]",
-  },
-  {
-    name: "Mango Cream",
-    desc: "Alphonso mango mousse with fresh mango chunks and a buttery sponge.",
-    price: "₹119",
-    image: flavorMango,
-    color: "from-[hsl(40,90%,45%)]",
-  },
-];
-
-const FlavorCard = ({ flavor, index }: { flavor: typeof flavors[0]; index: number }) => {
+const FlavorCard = ({
+  flavor,
+  index,
+  onSelect,
+}: {
+  flavor: (typeof FLAVORS)[number];
+  index: number;
+  onSelect: (flavorName: string) => void;
+}) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <motion.div
+    <motion.button
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
-      className="group"
+      type="button"
+      onClick={() => onSelect(flavor.name)}
+      className="group text-left"
     >
       <div className="glass-card-hover overflow-hidden">
         <div className="relative aspect-[4/5] overflow-hidden">
@@ -69,13 +45,18 @@ const FlavorCard = ({ flavor, index }: { flavor: typeof flavors[0]; index: numbe
           <p className="font-body text-sm text-muted-foreground leading-relaxed">{flavor.desc}</p>
         </div>
       </div>
-    </motion.div>
+    </motion.button>
   );
 };
 
 const FlavorsShowcase = () => {
+  const navigate = useNavigate();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  const onSelect = (flavorName: string) => {
+    navigate(`/order?flavor=${encodeURIComponent(flavorName)}`);
+  };
 
   return (
     <section id="flavors" className="section-padding bg-brand-cream">
@@ -94,8 +75,8 @@ const FlavorsShowcase = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {flavors.map((flavor, i) => (
-            <FlavorCard key={flavor.name} flavor={flavor} index={i} />
+          {FLAVORS.map((flavor, i) => (
+            <FlavorCard key={flavor.name} flavor={flavor} index={i} onSelect={onSelect} />
           ))}
         </div>
       </div>
