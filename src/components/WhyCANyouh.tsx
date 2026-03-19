@@ -30,8 +30,13 @@ const WhyCANyouh = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="why-canyouh" className="section-padding">
-      <div className="max-w-6xl mx-auto">
+    <section id="why-canyouh" className="section-padding relative overflow-hidden">
+      {/* Decorative background */}
+      <div className="absolute inset-0 bg-brand-cream" />
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary/[0.04] blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-brand-warm-gold/[0.04] blur-3xl" />
+
+      <div className="max-w-6xl mx-auto relative">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -40,9 +45,12 @@ const WhyCANyouh = () => {
           className="text-center mb-20"
         >
           <span className="font-body text-sm font-medium text-primary tracking-widest uppercase">Why Us</span>
-          <h2 className="font-display font-extrabold text-4xl md:text-5xl text-foreground mt-3">
+          <h2 className="font-display font-extrabold text-4xl md:text-5xl text-foreground mt-3 mb-4">
             Why <span className="text-gradient">CAN</span>youh?
           </h2>
+          <div className="flex justify-center">
+            <div className="w-16 h-1 rounded-full bg-gradient-to-r from-primary to-brand-warm-gold" />
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -56,11 +64,13 @@ const WhyCANyouh = () => {
                 transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="text-center group"
               >
-                <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-primary/10 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:shadow-lg group-hover:scale-110">
-                  <Icon className="w-7 h-7 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
+                <div className="glass-card-hover p-8 h-full">
+                  <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-primary/10 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:shadow-lg group-hover:scale-110">
+                    <Icon className="w-7 h-7 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
+                  </div>
+                  <h3 className="font-display font-bold text-lg text-foreground mb-2">{f.title}</h3>
+                  <p className="font-body text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
                 </div>
-                <h3 className="font-display font-bold text-lg text-foreground mb-2">{f.title}</h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
               </motion.div>
             );
           })}

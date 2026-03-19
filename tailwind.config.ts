@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Syne", "sans-serif"],
-        body: ["Inter", "sans-serif"],
+        display: ["Playfair Display", "Georgia", "serif"],
+        body: ["DM Sans", "Helvetica Neue", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -52,9 +52,12 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         brand: {
-          orange: "hsl(var(--brand-orange))",
+          coral: "hsl(var(--brand-coral))",
           cocoa: "hsl(var(--brand-cocoa))",
           cream: "hsl(var(--brand-cream))",
+          "warm-cream": "hsl(36 33% 96%)",
+          chocolate: "hsl(15 45% 12%)",
+          "warm-gold": "hsl(var(--brand-warm-gold))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -71,6 +74,7 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "4xl": "2rem",
       },
       keyframes: {
         "accordion-down": {
@@ -86,8 +90,20 @@ export default {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(25 100% 50% / 0.2)" },
-          "50%": { boxShadow: "0 0 40px hsl(25 100% 50% / 0.4)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(8 70% 62% / 0.15)" },
+          "50%": { boxShadow: "0 0 40px hsl(8 70% 62% / 0.3)" },
+        },
+        "shimmer": {
+          "0%": { backgroundPosition: "200% 0" },
+          "100%": { backgroundPosition: "-200% 0" },
+        },
+        "float-gentle": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "fade-scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
         },
       },
       animation: {
@@ -95,6 +111,9 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.8s ease-out forwards",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "shimmer": "shimmer 3s ease-in-out infinite",
+        "float-gentle": "float-gentle 4s ease-in-out infinite",
+        "fade-scale-in": "fade-scale-in 0.5s ease-out forwards",
       },
     },
   },

@@ -30,13 +30,12 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+          ? "bg-brand-cream/85 backdrop-blur-xl border-b border-border/40 shadow-sm"
           : "bg-transparent"
-      }`}
+        }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between" style={{ height: "4.5rem" }}>
         <button
           onClick={() => {
             if (location.pathname === "/") {
@@ -57,9 +56,10 @@ const Navbar = () => {
             <button
               key={link}
               onClick={() => scrollTo(link.toLowerCase().replace(/ /g, "-"))}
-              className="text-sm font-body font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
+              className="relative text-sm font-body font-medium text-muted-foreground hover:text-foreground transition-colors duration-300 group"
             >
               {link}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 rounded-full bg-primary transition-all duration-300 group-hover:w-full" />
             </button>
           ))}
           <button
@@ -67,7 +67,7 @@ const Navbar = () => {
               navigate("/order");
               setMenuOpen(false);
             }}
-            className="glow-button text-sm py-2 px-6"
+            className="glow-button text-sm py-2.5 px-7"
           >
             Order Now
           </button>
@@ -91,7 +91,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border"
+            className="md:hidden bg-brand-cream/95 backdrop-blur-xl border-b border-border/40"
           >
             <div className="px-6 py-4 flex flex-col gap-4">
               {links.map((link) => (
